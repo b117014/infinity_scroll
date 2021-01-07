@@ -4,12 +4,12 @@ const axios = require('axios')
 exports.getPhoto = async (req,res, next)=>{
 
     try{
-        const limit = req.query.limit
-        const skip = req.query.skip
-
-        const photo = await db.Photo.find()
-                                    .skip(skip)
-                                    .limit(limit)
+        let limit = req.query.limit
+        let skip = req.query.skip
+        console.log(limit, skip)
+        const photo = await db.Photo.find().limit(parseInt(limit)).skip(parseInt(skip))
+                                    
+                                    
 
         res.send(photo)
     }catch(err){
